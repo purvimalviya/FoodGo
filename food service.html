@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Go</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: rgba(255, 241, 45, 0.882);
+        }
+        #logo{
+            height:50px;
+            padding:5px;
+            margin-right:5px;
+        }
+
+        .navbar{
+            display: flex;
+            align-items: center;
+            position: sticky; /* child of relative item can be absolutely positioned within it, see navbar::before */
+            top: 0;
+            /* position:fixed; 
+            width: 100%;*/   /*used for making the navbar stick to top, use with absolute positioned wrapper (div id = topfix)
+            /* justify-content: center; */
+        }
+
+        .nav{
+            display: flex;
+            /* background: pink; */
+            
+            /* margin: 0px auto; */
+        }
+
+        .nav li{
+            list-style: none;
+            /* background: green; */
+            /* padding: 15px; */
+        }
+        .nav li a{
+            text-decoration: none;
+            display: block;   /*previously inline, padding doesn't work correctly vertically*/
+            padding: 15px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: rgb(255, 255, 255);
+            /* background: yellowgreen; */
+            /* border: solid red 2px; */
+        }
+
+        .nav li a:hover{
+            border: solid yellow 3px;
+            /* background-color: black;
+            color: white;
+            box-shadow: 3px 3px rgba(0, 0, 0, 0.749);
+        */ }
+
+        .navbar::before{
+            content:"";
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.468);
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+            opacity: 1;
+        }
+
+         /* #fixtop{
+            position: absolute;
+            top: 0%;
+        } */
+        
+        /* #logo{
+            background: pink;
+            position:absolute;
+            float: left;
+        } */   /*used when we want to center justify nav item in flexbox, the logo is not in flexbox anymore as float can't be used in flexbox */
+
+        .home{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 500px; /*justify content worked when we gave a height, try removing them*/
+           /*height increased (initially was 400) */
+            margin-bottom: 120px;
+        }
+
+        .home p , .h{
+            /* background-color: aqua; */
+            /* border: solid red 1px; */  
+        }
+        .fg{
+            color: yellow;
+        }
+        .h{
+            font-family:'Gloock';
+            color: rgb(255, 255, 255);
+            font-size: 50px;
+            text-shadow: 5px 5px black;
+            padding: 50px 40px;
+            border: solid yellow 2px;
+            margin-bottom: 10px;
+            border-radius: 150px;
+        }
+        .home p{
+            font-family:'Gloock';
+            font-size: 20px;
+            color: rgb(255, 255, 255);
+            text-shadow: 3px 1.5px black;
+            text-align: center;
+            /* background-color: rgba(255, 0, 0, 0.404); */
+        }
+        .home button{
+            margin-top: 20px;
+            background-color: yellow;
+            padding: 10px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: large;
+            cursor: pointer;
+            border: none;
+            border-radius: 2px;
+        }
+
+        .home::before{
+            content: "";
+            position: absolute;   
+            background: url(images/sk-uVPV_nV17Tw-unsplash.jpg) no-repeat center center/cover;
+            background-color: rgba(0, 0, 0, 0.811);
+            top: 0;
+            left: 0;
+            height: 650px;
+            width: 100%;
+            opacity:1;
+            z-index: -2;
+        }
+
+        .services{
+            /* margin-top: 120px; */  /*margin bottom 120px given in home section instead*/
+        }
+
+        .services h1{
+            /* background-color: grey; */
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            text-align: center;
+            font-size: 20px;
+            color: rgb(0, 0, 0);
+            letter-spacing: 1px;
+        }
+
+        .servbox{
+            display: flex;
+            margin: 20px 10px;
+            /* flex-wrap: wrap; */
+            justify-content: center; /*space-between or evenly (optional) with max width given to boxes inside flexbox */   /*can also be center*/
+        }
+
+        .box{
+            max-width: 400px;
+            margin: 10px;
+            padding: 20px;
+            /* border: solid grey 1px; */
+            border-radius: 10px;
+            box-shadow: 5px 8px rgba(0, 0, 0, 0.684);
+            background-color: rgb(255, 255, 255) ;
+            font-family: 'Gloock';
+        }
+        .box img{
+            height: 100px;
+            display: block;
+            margin: auto;
+        }
+
+        .clients h1{
+            padding: 20px;
+            text-align: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 20px;
+            color: rgb(0, 0, 0);
+            letter-spacing: 1px;
+        }
+
+        .clibox{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .clibox img{
+            margin: 20px;
+            height: 50px;
+        }
+
+        .clients{
+            position: relative;
+        }
+
+        .clients::before{
+            content: "";
+            position: absolute;
+            background-color: rgb(255, 255, 255);
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .contactus{
+            background-color: rgba(0, 0, 0, 0.932);
+            padding: 5px;
+        }
+        .contactus h1{
+            text-align: center;
+            margin-top: 20px; /*adjust later*/
+            font-size: 20px;
+            color: rgb(255, 255, 255);
+            letter-spacing: 1px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .contactbox{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+            color: white;
+            font-family: 'Gloock';
+        }
+
+        form{
+            width: 40%;
+        }
+
+        form input,textarea{
+            width: 100%;
+        }
+
+        form button{
+            border: none;
+            background-color: rgb(171, 171, 171);
+            padding: 8px;
+            border-radius: 4px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        footer{
+            display: block;
+            text-align: center;
+            font-size: small;
+        }
+
+    </style>
+
+    <link rel="stylesheet" media="screen and (max-width: 650px)" href="food_moblie.css">
+   
+    <link href="https://fonts.googleapis.com/css2?family=Gloock&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- <img id=logo src="" alt="food_go">  can be used for floating the logo on top left absolutely when we want nav items to be center justified in flexbox, we comment out logo from navbar -->
+    <!-- <div id = fixtop></div> -->
+    <div class="navbar">
+        <img id=logo src="images/foodgo_logo.png" alt="food_go">
+        <ul class="nav">
+            <li><a href="">Home</a></li>
+            <li><a href="">Services</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    </div>
+    <!-- </div> -->
+
+    <section class="home">
+        <h1 class="h">Get your <br><span class="fg">FOOD</span> <br>at a <span class="fg">GO.</span></h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+        <p>Lorem ipsum dolor sit amet consectetur</p>
+        <button>Order Now</button>
+    </section>
+
+    <section class="services">
+        <h1>Our Services</h1>
+        <div class="servbox">
+            <div class="box" id="b1">
+                <img src="images/frankie.png" alt="TAKE_OUT">
+                <h2>Take Out</h2>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae, iusto? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut veniam excepturi sapiente dolores, praesentium sunt.s</p>
+            </div>
+            <div class="box" id="b2">
+                <img src="images/paneer.png" alt="DINE_IN">
+                <h2>Dine In</h2>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam doloribus doloremque molestiae quos enim alias. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae, iusto?</p>
+            </div>
+            <div class="box" id="b3">
+                <img src="images/hawaiian-pizza.jpg" alt="ORDER_NOW">
+                <h2>Order Now</h2>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi cupiditate harum molestias omnis sunt vitae!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae, iusto?</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="clients">
+        <h1>Our Partners</h1>
+        <div class="clibox">
+            <img src="images/dominos.png" alt="cli_1">
+            <img src="images/kfc.png" alt="cli_2">
+            <img src="images/lapinoz.png" alt="cli_3">
+            <img src="images/Wendys-Logo.png" alt="cli_4">
+            <img src="images/mcdonalds_PNG19.png" alt="cli_5">
+        </div>
+    </section>
+
+    <section class="contactus">
+        <h1>Contact Us</h1>
+        <div class="contactbox">
+            <form action="">
+                <div class="form_elem">
+                    <label for="name" >Name:</label>
+                    <input type="text" name="name" placeholder="Enter Your Name">
+                </div>
+                <div class="form_elem">
+                    <label for="mail">Email:</label>
+                    <input type="email" name="mail" placeholder="Enter Email Address">
+                </div>
+                <div class="form_elem">
+                    <label for="msg">Message:</label>
+                    <textarea name="msg" id="" cols="30" rows="10"></textarea>
+                </div>
+                <button>Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        ALL RIGHTS RESERVED @2023
+    </footer>
+</body>
+</html>
+
+<!-- justify content, align content, flexbox working, form inputs with flexbox, before after image -->
